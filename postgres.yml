@@ -11,20 +11,24 @@ spec:
    image: postgres:9.4
    ports:
    - containerPort: 5432
+   env:
+    - name: POSTGRES_USER
+      value: "postgres"
+    - name:  POSTGRES_PASSWORD
+      value: "postgres"
 ---
 apiVersion: v1 
 kind: Service 
 metdata:
  name: postgres-service
- lables:
-  name: 
+ labels:
+  name: postgres-service
   app: demo-voting-app
 spec: 
- type: CluseterIP
  ports:
  - port: 5432
    targetPort: 5432
- selectors:
+ selector:
   name: postgres-app-pod
   app: demo-voting-app
    
